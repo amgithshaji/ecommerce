@@ -24,7 +24,7 @@ function Home() {
      <div className='container py-5' > 
       {
         loading?
-        <div className="text-center my-5"><img src="" alt="no img" /></div>
+        <div className="text-center my-5 fw-bolder fs-5"><img width="100px" className='' src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921" alt="no img" />loading</div>
 
      : 
       <div className='row my-5' >
@@ -42,7 +42,7 @@ function Home() {
       <Card.Img height={'250px'} variant="top" src={products.thumbnail} />
       <Card.Body className='text-center' >
         <Card.Title className='fw-bold' > Title</Card.Title>
-      <Link to={'/products/:id/view'} className='btn btn-success rounded-4' >View more..</Link>
+      <Link to={`/products/${products?.id}/view`} className='btn btn-success rounded-4' >View more..</Link>
       </Card.Body>
     </Card>
         </div>
