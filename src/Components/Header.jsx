@@ -8,7 +8,7 @@ faTruckFast
 
 function Header() {
   return (
-     <Navbar expand="lg" style={{zIndex:"1"}} className="bg-success position-fixed w-100 ">
+     <Navbar expand="lg" className="bg-success position-fixed w-100 z-1">
       <Container>
         <Navbar.Brand > <Link to={'/'} className='text-decoration-none fw-bold text-light'  >  <FontAwesomeIcon icon={faTruckFast}/> Daily Cart </Link> </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className='bg-light'  />
