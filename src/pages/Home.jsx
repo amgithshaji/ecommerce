@@ -10,7 +10,7 @@ import { faHourglass2 } from '@fortawesome/free-solid-svg-icons'
 function Home() {
   const dispatch = useDispatch()
   const {loading,allProducts,error}=useSelector(state=>state.productReducer)
-  console.log(allProducts);
+  // console.log(allProducts);
   
 
   useEffect(()=>{
@@ -32,7 +32,7 @@ function Home() {
         {/* dulipcate */}
         {
           allProducts?.length<0?
-          <p>produvts not found</p>:
+          <p>products not found</p>:
           
 
           allProducts?.map(products=>(
