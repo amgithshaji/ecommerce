@@ -39,9 +39,9 @@ function Home() {
              <div key={products?.id} className='col-md-3 mb-2' >
 {/* card */}
     <Card >
-      <Card.Img height={'250px'} variant="top" src={products.thumbnail} />
+      <Card.Img height={'250px'} variant="top" src={products?.thumbnail} />
       <Card.Body className='text-center' >
-        <Card.Title className='fw-bold' > Title</Card.Title>
+        <Card.Title className='fw-bold' >{products?.title}</Card.Title>
       <Link to={`/products/${products?.id}/view`} className='btn btn-success rounded-4' >View more..</Link>
       </Card.Body>
     </Card>

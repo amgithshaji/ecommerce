@@ -5,10 +5,14 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDispatch, useSelector } from 'react-redux';
 import { addToWishlist } from '../redux/slices/wishlistSlice';
+import Swal from 'sweetalert2'
+import { addToCart } from '../redux/slices/cartSlice';
 
 
 function View() {
   const userWishlist = useSelector(state=>state.wishlistReducer)
+  const userCart = useSelector(state=>state.cartReducer)
+
   const dispatch = useDispatch()
   // get product id from url
   const {id} = useParams()
@@ -28,7 +32,14 @@ function View() {
   const handleWishlist = ()=>{
     const exisitingProduct = userWishlist?.find(item=>item.id==id)
     if (exisitingProduct) {
-      alert("product already added")
+      // alert("product already added")
+      Swal.fire({
+  title: 'Sorry!',
+  text: 'product already added',
+  icon: 'error',
+  confirmButtonText: 'Cool'
+})
+
       
     }else{
       dispatch(addToWishlist(product))
@@ -36,7 +47,16 @@ function View() {
     }
   }
 
-
+const handleCart = ()=>{
+  const exisitingProduct = userCart?.find(item=>item.id==id)
+  dispatch(addToCart(product))
+        Swal.fire({
+  title: 'completed',
+  text: exisitingProduct?`quantity of ${product.title},is updated successfullty` :'product added to your cart',
+  icon: 'success',
+  confirmButtonText: 'ok'
+})
+}
   
   return (
 
@@ -48,7 +68,7 @@ function View() {
 <img style={{width:"70%",marginLeft:"15%"}} className='img-fluid ' src={product?.thumbnail} alt="no img" />
 <div className='d-flex justify-content-evenly mt-5' >
   <button onClick={handleWishlist} className='btn btn-primary' >ADD to wishlist</button>
-    <button className='btn btn-success' >ADD to cart</button>
+    <button onClick={handleCart} className='btn btn-success' >ADD to cart</button>
 
 </div>
   </div>
