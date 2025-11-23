@@ -1,17 +1,22 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from "../Components/Header"
 import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllProducts } from '../redux/slices/productsSlice'
 import { faHourglass2 } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBackward,faForward } from '@fortawesome/free-solid-svg-icons'
+
 
 
 function Home() {
   const dispatch = useDispatch()
   const {loading,allProducts,error}=useSelector(state=>state.productReducer)
   // console.log(allProducts);
-  
+  const[currentpage,setCurrentPage]=useState(1)
+  const productsPerPage = 8
+  const totalPages = Math.ceil(allProducts.length/ productsPerPage)
 
   useEffect(()=>{
     dispatch(getAllProducts())
@@ -20,7 +25,7 @@ function Home() {
   return (
 
     <>
-      <Header/>
+      <Header insideHome={true} />
      <div className='container py-5' > 
       {
         loading?
@@ -47,9 +52,16 @@ function Home() {
     </Card>
         </div>
           ))
+          
         }
       </div>
       }
+      <div className='my-3 text-center' >
+        <button className='btn' >  <FontAwesomeIcon icon={faBackward} />  </button>
+<span className='fw-bolder' >{currentpage} of {totalPages}</span>
+        <button className='btn' >  <FontAwesomeIcon icon={faForward} />  </button>
+
+      </div>
      </div>
       </>
   )

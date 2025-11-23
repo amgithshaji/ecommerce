@@ -35,7 +35,8 @@ function Wishlist() {
 {
  userWishlist?.length>0?
  <div className="row">
-  {userWishlist?.map(product=>(
+  {
+  userWishlist?.map(product=>(
     <div className='col-md-3 mb-2 mt-5 ' >
 {/* card */}
   <Card >
@@ -49,7 +50,8 @@ function Wishlist() {
       </Card.Body>
     </Card>
     </div>
-  ))}
+  ))
+  }
 </div>
 :
 <div style={{height:"83vh"}} className='d-flex justify-content-center align-items-center flex-column' >
