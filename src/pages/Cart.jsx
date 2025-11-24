@@ -52,44 +52,47 @@ const navigate = useNavigate()
           userCart?.length>0?
 <div className="row mt-5">
        
-  <div className="col-md-8 border rounded p-5 mt-3 table-responsive ">
-              <table className='table ' >
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>product</th>
-                    <th>image</th>
-                    <th>quantity</th>
-                    <th>price</th>
-                    <th>...</th>
-
-                  </tr>
-                </thead>
-                <tbody>
-                {
-            userCart.map((product,index)=>(
-
-                  <tr key={index} >
-                    <td>{index+1}</td>
-                    <td>{product?.title}</td>
-                    <td> <img width={'50px'} height={'50px'} src={product?.images}/> </td>
-                    <td>
-                      <div className='d-flex' >
-                        <button onClick={()=>handleDecrementcart(product)} className='btn fs-3 fw-bold' >-</button>
-                        <input style={{ width: "50px" }} value={product?.quantity} type="text" className='form-control' readOnly />
-                        <button onClick={()=>dispatch(incrementCartItem(product))} className='btn fs-3 fw-bold' >+</button>
-
-                      </div>
-                    </td>
-                    <td>  ${product.price}</td>
-                    <td> <button onClick={()=>dispatch(removeCartItem(product?.id))} className='btn btn-danger' > <FontAwesomeIcon icon={faTrash} /></button> </td>
-                  </tr>
-                        ))
-                      }
-
-                </tbody>
-              </table>
-              <div className='float-end mt-3' >
+  <div className="  col-md-8 border rounded p-5 mt-3 ">
+              <div className='table-responsive'>
+                <table className='table ' >
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>product</th>
+                      <th>image</th>
+                      <th>quantity</th>
+                      <th>price</th>
+                      <th>...</th>
+  
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {
+              userCart.map((product,index)=>(
+  
+                    <tr key={index} >
+                      <td>{index+1}</td>
+                      <td>{product?.title}</td>
+                      <td> <img width={'50px'} height={'50px'} src={product?.images}/> </td>
+                      <td>
+                        <div className='d-flex' >
+                          <button onClick={()=>handleDecrementcart(product)} className='btn fs-3 fw-bold' >-</button>
+                          <input style={{ width: "50px" }} value={product?.quantity} type="text" className='form-control' readOnly />
+                          <button onClick={()=>dispatch(incrementCartItem(product))} className='btn fs-3 fw-bold' >+</button>
+  
+                        </div>
+                      </td>
+                      <td>  ${product.price}</td>
+                      <td> <button onClick={()=>dispatch(removeCartItem(product?.id))} className='btn btn-danger' > <FontAwesomeIcon icon={faTrash} /></button> </td>
+                    </tr>
+                          ))
+                        }
+  
+                  </tbody>
+                </table>
+              </div
+             >
+              <div className='float-end mt-3 text-center' >
 <button onClick={()=>dispatch(emptyCart())} className='btn btn-danger me-2' >EMPTY CART</button>
 <Link to={'/'} className='btn btn-primary' >SHOP MORE</Link>
               </div>
