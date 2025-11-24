@@ -52,8 +52,8 @@ const navigate = useNavigate()
           userCart?.length>0?
 <div className="row mt-5">
        
-  <div className="col-md-8 border rounded p-5 mt-3">
-              <table className='table' >
+  <div className="col-md-8 border rounded p-5 mt-3 table-responsive ">
+              <table className='table ' >
                 <thead>
                   <tr>
                     <th>#</th>
