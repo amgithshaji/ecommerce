@@ -18,9 +18,27 @@ function Home() {
   const productsPerPage = 8
   const totalPages = Math.ceil(allProducts.length/ productsPerPage)
 
+  const pageItemLastIndex = currentpage * productsPerPage
+   const pageItemStartIndex = pageItemLastIndex - productsPerPage
+   const visibleProductsArray = allProducts?.slice(pageItemStartIndex,pageItemLastIndex)
+
   useEffect(()=>{
     dispatch(getAllProducts())
   },[])
+
+  const navigateNextPage= () =>{
+    if (currentpage!=totalPages) {
+      setCurrentPage(currentpage+1)
+      
+    }
+  }
+
+  const navigatePreviousPage= () =>{
+    if (currentpage!=1) {
+      setCurrentPage(currentpage-1)
+      
+    }
+  }
 
   return (
 
@@ -40,7 +58,7 @@ function Home() {
           <p>products not found</p>:
           
 
-          allProducts?.map(products=>(
+          visibleProductsArray?.map(products=>(
              <div key={products?.id} className='col-md-3 mb-2' >
 {/* card */}
     <Card >
@@ -57,9 +75,9 @@ function Home() {
       </div>
       }
       <div className='my-3 text-center' >
-        <button className='btn' >  <FontAwesomeIcon icon={faBackward} />  </button>
+        <button onClick={navigatePreviousPage} className='btn' >  <FontAwesomeIcon icon={faBackward} />  </button>
 <span className='fw-bolder' >{currentpage} of {totalPages}</span>
-        <button className='btn' >  <FontAwesomeIcon icon={faForward} />  </button>
+        <button onClick={navigateNextPage} className='btn' >  <FontAwesomeIcon icon={faForward} />  </button>
 
       </div>
      </div>
